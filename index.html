@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Emberlock</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<div id="boot" role="status" aria-label="Loading">
+  <div class="boot-in">
+    <div class="boot-num"><span id="bootN">0</span><small>%</small></div>
+    <div class="boot-bar"><i id="bootB"></i></div>
+    <div class="boot-log" id="bootL"></div>
+  </div>
+  <button class="boot-skip" id="bootSkip">SKIP &rarr;</button>
+</div>
+<div id="prog"></div>
+<div class="cur-dot" id="cd"></div><div class="cur-ring" id="cr"></div>
+<canvas id="storm"></canvas>
+
+<div class="banner" id="banner"><span><b>New</b> &nbsp;Ember Core 2 brings runtime defense to edge AI chips.</span> <a href="#platform" data-cursor>Learn more &rarr;</a><button id="banX" aria-label="Dismiss banner">&times;</button></div>
+
+<nav class="top" id="nav"><div class="wrap"><div class="nav-in">
+  <a href="#top" class="logo" data-cursor aria-label="Emberlock home">
+    <svg viewBox="0 0 32 32" fill="none"><path d="M16 2 4 8v9c0 7 5 11.5 12 13 7-1.500 12-6 12-13V8L16 2Z" stroke="var(--ac)" stroke-width="2"/><path d="M16 9c2.500 3 4 4.500 4 7.500a4 4 0 0 1-8 0C12 14 13.500 12.500 16 9Z" fill="var(--ac)"/></svg>
+    Emberlock
+  </a>
+  <div class="nav-links" id="navLinks">
+    <a href="#ops" data-cursor>Live ops</a><a href="#sim" data-cursor>Simulator</a><a href="#platform" data-cursor>Platform</a><a href="#industries" data-cursor>Industries</a><a href="#compliance" data-cursor>Compliance</a>
+  </div>
+  <div class="nav-r">
+    <button class="kbd" id="palBtn" aria-label="Open command palette"><span class="t">Search</span> <span>&#8984;K</span></button>
+    <a href="#cta" class="btn pri sm" data-mag data-cursor>Book a demo <span class="arr">&rarr;</span></a>
+  </div>
+</div></div></nav>
+
+<main id="top">
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="grid-bg"></div>
+  <canvas id="heroCv"></canvas>
+  <div class="vig"></div>
+  <div id="orb"></div>
+  <a href="#sim" id="orbTag" data-cursor>See it work</a>
+  <div class="wrap" style="width:100%">
+    <div class="hero-txt">
+      <div class="chip"><i>LIVE</i> Runtime defense for machines that move</div>
+      <h1 id="h1" aria-label="Armor for machines that move."><span class="ln">Armor for</span><span class="ln">machines</span><span class="ln">that move.</span></h1>
+      <p class="lead">Robots, vehicles and drones are computers with a body. Emberlock sits inside the device, spots an attack in milliseconds, and stops it before a single command reaches the motors.</p>
+      <div class="cta-row">
+        <a href="#sim" class="btn pri" data-mag data-cursor>Launch an attack <span class="arr">&rarr;</span></a>
+        <a href="#platform" class="btn ghost" data-mag data-cursor>Explore platform</a>
+      </div>
+      <div class="live"><span class="pulse"></span><span>ATTACKS STOPPED TODAY</span><b id="heroCount">2,847,193</b></div>
+    </div>
+  </div>
+  <div class="scrollcue"><span>SCROLL</span><i></i></div>
+</section>
+
+<div class="marq">
+  <p>Defending fleets at</p>
+  <div class="marq-track" id="marq"></div>
+</div>
+
+<!-- MANIFESTO -->
+<section id="manif">
+  <div class="wrap">
+    <div class="manif-meta"><span>MANIFESTO</span><span>READ WHILE YOU SCROLL</span></div>
+    <p class="manif-t" id="manifT">Every robot is a computer with a body. When it is hacked, the damage is not data. It is metal, motion and people. We built the one thing that <em class="hlw">stops the attack inside the machine</em> before the first command lands.</p>
+  </div>
+</section>
+
+<!-- OPS ROOM -->
+<section id="ops" class="pad">
+  <div class="wrap">
+    <div class="sec-head" data-rv>
+      <span class="eyebrow">Live ops room</span>
+      <h2>Every attack,<br><span class="acc">watched in real time.</span></h2>
+      <p class="lead">A simulated feed of what the Emberlock network sees. Each arc is an attempt to reach a machine. Each ring is it getting stopped.</p>
+    </div>
+    <div class="ops-grid">
+      <div class="panel" data-rv>
+        <div class="panel-h"><div class="dots"><i></i><i></i><i></i></div><span>threat-feed &middot; stdout</span><span class="t-ok">&#9679; streaming</span></div>
+        <div class="term" id="term" aria-live="off"></div>
+      </div>
+      <div class="panel" data-rv>
+        <div class="panel-h"><span>global fleet map</span><span id="gHint">drag to spin</span></div>
+        <div class="globe-wrap"><canvas id="globe"></canvas>
+          <div class="g-stats"><div><b id="gBlocked">0</b><span>blocked</span></div><div><b id="gDev">1.24M</b><span>devices</span></div><div><b id="gMs">38<small style="font-size:.5em">ms</small></b><span>median detect</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIMULATOR -->
+<section id="sim" class="pad">
+  <div class="wrap">
+    <div class="sec-head" data-rv>
+      <span class="eyebrow">Interactive demo</span>
+      <h2>Try to break<br><span class="acc">this robot.</span></h2>
+      <p class="lead">Pick an attack. Switch the shield off and watch a packing line lose control. Switch it on and try again.</p>
+    </div>
+    <div class="sim-grid">
+      <div class="panel" data-rv>
+        <div class="sim-top">
+          <span class="pill ok" id="status"><i></i><span id="statusT">Nominal</span></span>
+          <div class="sw"><span>Emberlock shield</span><button role="switch" aria-checked="true" id="shield" aria-label="Emberlock shield"></button></div>
+        </div>
+        <div class="stage" id="stage">
+          <svg id="rig" viewBox="0 0 520 340" role="img" aria-label="Robot arm moving crates between two conveyor belts">
+            <defs>
+              <linearGradient id="armg" x1="0" x2="1"><stop offset="0" stop-color="#d9d4ce"/><stop offset="1" stop-color="#8d8680"/></linearGradient>
+              <radialGradient id="domeg"><stop offset=".7" stop-color="#5bd6ff" stop-opacity="0"/><stop offset="1" stop-color="#5bd6ff" stop-opacity=".35"/></radialGradient>
+            </defs>
+            <g stroke="rgba(255,255,255,.07)"><path d="M0 60H520M0 120H520M0 180H520M0 240H520M60 0V340M140 0V340M220 0V340M300 0V340M380 0V340M460 0V340"/></g>
+            <rect x="0" y="292" width="520" height="48" fill="#121016"/>
+            <line class="belt" x1="0" y1="300" x2="520" y2="300" stroke="rgba(255,255,255,.22)" stroke-width="3"/>
+            <line x1="0" y1="292" x2="520" y2="292" stroke="rgba(255,255,255,.18)"/>
+            <path d="M104 292h92l-12-34h-68z" fill="#1b1820" stroke="rgba(255,255,255,.2)"/>
+            <circle id="dome" cx="150" cy="240" r="175" fill="url(#domeg)" stroke="#5bd6ff" stroke-opacity=".5" stroke-dasharray="3 7"/>
+            <g id="crate"><rect x="-15" y="-4" width="30" height="26" rx="2" fill="#c9884b" stroke="#6b4320" stroke-width="2"/><path d="M-15 8H15" stroke="#6b4320" stroke-width="2"/></g>
+            <line id="a1" stroke="url(#armg)" stroke-width="18" stroke-linecap="round"/>
+            <line id="a2" stroke="url(#armg)" stroke-width="13" stroke-linecap="round"/>
+            <circle id="j0" r="13" fill="#1b1820" stroke="var(--ac)" stroke-width="3"/>
+            <circle id="j1" r="9" fill="#1b1820" stroke="var(--ac)" stroke-width="3"/>
+            <g id="grip"><line id="g1" stroke="#d9d4ce" stroke-width="5" stroke-linecap="round"/><line id="g2" stroke="#d9d4ce" stroke-width="5" stroke-linecap="round"/></g>
+            <g id="sparks"></g>
+            <text x="14" y="26" fill="rgba(255,255,255,.4)" font-family="JetBrains Mono,monospace" font-size="10" letter-spacing="1.500">CELL 07 &middot; PICK-AND-PLACE</text>
+          </svg>
+        </div>
+        <div class="hud">
+          <div><span>Integrity</span><b id="hInt">100%</b><div class="meter"><i id="hMeter"></i></div></div>
+          <div><span>Crates moved</span><b id="hCrates">0</b></div>
+          <div><span>Downtime cost</span><b id="hCost">$0</b></div>
+        </div>
+      </div>
+      <div class="panel" data-rv>
+        <div class="panel-h"><span>choose an attack</span><span id="atkNote">shield on</span></div>
+        <div class="atk-list" id="atkList"></div>
+        <div class="simlog" id="simLog"><div class="t-dim">// awaiting attack...</div></div>
+        <button class="btn pri" id="restore" data-cursor>Restore the line</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORM BENTO -->
+<section id="platform" class="pad">
+  <div class="wrap">
+    <div class="sec-head" data-rv>
+      <span class="eyebrow">The platform</span>
+      <h2>One agent.<br><span class="acc">Six ways to win.</span></h2>
+      <p class="lead">A single lightweight agent runs on the device itself. No cloud round trip, no waiting for a patch.</p>
+    </div>
+    <div class="bento" id="bento">
+      <article class="panel bc w4" data-rv><div><h3>Runtime Shield</h3><p>Watches every syscall, bus frame and model input. Anything off-policy is frozen before it reaches an actuator.</p></div>
+        <div class="viz"><div class="ring-v"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="6"/><circle class="r1" cx="60" cy="60" r="52" fill="none" stroke="var(--ac)" stroke-width="6" stroke-linecap="round" stroke-dasharray="230 100"/><circle cx="60" cy="60" r="38" fill="none" stroke="var(--ok)" stroke-width="3" stroke-dasharray="4 8" opacity=".7"/></svg><b>0.4%</b></div>
+        <div style="margin-left:26px;font-family:var(--ff-m);font-size:12px;color:var(--mut);line-height:2">CPU OVERHEAD<br><span style="color:var(--fg)">12 MB</span> MEMORY<br><span style="color:var(--ok)">38 ms</span> DETECT</div></div></article>
+      <article class="panel bc" data-rv><div><h3>Firmware X-ray</h3><p>Instant SBOM and known-flaw map of every image.</p></div>
+        <div class="viz"><div class="sbom">
+          <div><span>openssl</span><i style="--w:92%;--c:var(--bad)"></i><span class="t-bad">CVE</span></div>
+          <div><span>busybox</span><i style="--w:64%;--c:var(--warn)"></i><span class="t-w">MED</span></div>
+          <div><span>ros2-core</span><i style="--w:28%;--c:var(--ok)"></i><span class="t-ok">OK</span></div>
+          <div><span>libcanbus</span><i style="--w:44%;--c:var(--ok)"></i><span class="t-ok">OK</span></div>
+        </div></div></article>
+      <article class="panel bc" data-rv><div><h3>Fleet Command</h3><p>Hover a node. Click to quarantine it.</p></div>
+        <div class="viz"><div class="fleet" id="fleet"></div></div></article>
+      <article class="panel bc w4" data-rv><div><h3>Anomaly AI</h3><p>A model trained on normal motion for each machine. When behavior drifts, it flags the spike and explains why.</p></div>
+        <div class="viz"><canvas id="spark"></canvas></div></article>
+      <article class="panel bc w3" data-rv><div><h3>Compliance Autopilot</h3><p>Evidence for audits collects itself.</p></div>
+        <div class="viz"><div class="checks" id="checks">
+          <div><i>&#10003;</i><span>Vulnerability handling process</span></div>
+          <div><i>&#10003;</i><span>Signed SBOM for every release</span></div>
+          <div><i>&#10003;</i><span>Secure update trail</span></div>
+          <div><i>&#10003;</i><span>Incident reporting in 24h</span></div>
+        </div></div></article>
+      <article class="panel bc w3" data-rv><div><h3>Signed OTA</h3><p>Updates only land if the signature, the model and the timing agree.</p></div>
+        <div class="viz"><div class="ota"><div class="hash" id="hash"></div><div class="bar"><i id="otaBar"></i></div><div id="otaTxt" class="t-dim">verifying signature...</div></div></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section id="industries" class="paper pad">
+  <div class="wrap">
+    <div class="sec-head" data-rv>
+      <span class="eyebrow">Built for the floor</span>
+      <h2>Wherever metal<br>takes orders.</h2>
+    </div>
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <div class="ind" data-rv>
+      <div>
+        <h3 id="indH"></h3>
+        <p id="indP"></p>
+        <div class="mets" id="indM"></div>
+      </div>
+      <div class="radar"><svg viewBox="-170 -170 340 340" id="radar" aria-label="Attack surface radar"></svg></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPLIANCE -->
+<section id="compliance" class="pad paper" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head" data-rv style="margin-bottom:40px">
+      <span class="eyebrow">Compliance</span>
+      <h2 style="font-size:clamp(36px,5vw,72px)">Pass the audit<br>without the panic.</h2>
+    </div>
+    <div class="flips" id="flips"></div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="pad" style="padding-block:clamp(60px,8vw,110px)">
+  <div class="stats wrap" style="padding:0">
+    <div data-rv><b><span data-n="38">0</span><em>ms</em></b><span>Median time to detect</span></div>
+    <div data-rv><b><span data-n="1.24" data-d="2">0</span><em>M</em></b><span>Devices protected</span></div>
+    <div data-rv><b><span data-n="99.98" data-d="2">0</span><em>%</em></b><span>Attacks contained</span></div>
+    <div data-rv><b><span data-n="0">0</span></b><span>Production lines stopped</span></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta" class="pad">
+  <div class="wrap">
+    <span class="eyebrow" data-rv>Get started</span>
+    <h2 data-rv style="margin-top:18px">Put a lock on<br><span class="acc">the machines.</span></h2>
+    <p class="lead" data-rv>See Emberlock running on your hardware in a 30 minute call. No agents to install until you say so.</p>
+    <form class="form" id="form" data-rv>
+      <input type="email" id="email" placeholder="you@company.com" required aria-label="Work email">
+      <button class="btn pri" data-mag data-cursor type="submit">Book a demo <span class="arr">&rarr;</span></button>
+    </form>
+    <div class="giant" id="giant" aria-hidden="true"></div>
+  </div>
+</section>
+</main>
+<footer><div class="wrap"><span>&copy; 2026 Emberlock. A concept brand, not a real company.</span><span class="mono">Press &#8984;K or Ctrl+K for commands</span></div></footer>
+
+<div class="dock" id="dock" aria-label="Accent theme">
+  <button style="--c:#ff5a1f" data-ac="ember" class="on" aria-label="Ember theme"></button>
+  <button style="--c:#35c8ff" data-ac="ice" aria-label="Ice theme"></button>
+  <button style="--c:#b6ff3b" data-ac="toxic" aria-label="Toxic theme"></button>
+  <button style="--c:#c25cff" data-ac="violet" aria-label="Violet theme"></button>
+  <button class="snd" id="snd" aria-pressed="false">SOUND OFF</button>
+</div>
+
+<div id="pal" role="dialog" aria-label="Command palette"><div class="pal-box"><input id="palIn" placeholder="Type a command..." autocomplete="off" aria-label="Search commands"><div class="pal-list" id="palList"></div></div></div>
+<div class="toast" id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
